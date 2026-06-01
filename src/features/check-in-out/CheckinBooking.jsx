@@ -93,7 +93,7 @@ function CheckinBooking() {
           checked={confirmPaid}
           onChange={() => setConfirmPaid((confirm) => !confirm)}
           id='confirm'
-          disabled={confirmPaid || isCheckingIn}
+          disabled={isCheckingIn}
         >
           I confirm that {guests.fullName} has paid the total amount of{" "}
           {!addBreakfast
