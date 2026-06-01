@@ -19,32 +19,36 @@ function UpdatePasswordForm() {
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <FormRow
-        label="Password (min 8 characters)"
+        label='Password (min 8 characters)'
         error={errors?.password?.message}
       >
         <Input
-          type="password"
-          id="password"
-          autoComplete="current-password"
+          type='password'
+          id='password'
           disabled={isUpdating}
+          autoComplete='current-password'
           {...register("password", {
             required: "This field is required",
             minLength: {
               value: 8,
-              message: "Password needs a minimum of 8 characters",
+              message: "Password requires minimum of 8 characters",
+            },
+            pattern: {
+              value: /^\S+$/,
+              message: "Password cannot contain spaces",
             },
           })}
         />
       </FormRow>
 
       <FormRow
-        label="Confirm password"
+        label='Confirm password'
         error={errors?.passwordConfirm?.message}
       >
         <Input
-          type="password"
-          autoComplete="new-password"
-          id="passwordConfirm"
+          type='password'
+          autoComplete='new-password'
+          id='passwordConfirm'
           disabled={isUpdating}
           {...register("passwordConfirm", {
             required: "This field is required",
@@ -54,7 +58,7 @@ function UpdatePasswordForm() {
         />
       </FormRow>
       <FormRow>
-        <Button onClick={reset} type="reset" variation="secondary">
+        <Button onClick={reset} type='reset' variation='secondary'>
           Cancel
         </Button>
         <Button disabled={isUpdating}>Update password</Button>

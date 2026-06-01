@@ -13,7 +13,7 @@ function SignupForm() {
   const { errors } = formState;
 
   function onSubmit({ fullName, email, password }) {
-    signup({ fullName, email, password }, { onSettled: () => reset });
+    signup({ fullName, email, password }, { onSuccess: reset });
   }
 
   return (
@@ -56,6 +56,10 @@ function SignupForm() {
               value: 8,
               message: "Password requires minimum of 8 characters",
             },
+            pattern: {
+              value: /^\S+$/,
+              message: "Password cannot contain spaces",
+            },
           })}
         />
       </FormRow>
@@ -74,7 +78,6 @@ function SignupForm() {
       </FormRow>
 
       <FormRow>
-        {/* type is an HTML attribute! */}
         <Button
           variation='secondary'
           type='reset'
