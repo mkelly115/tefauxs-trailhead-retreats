@@ -1,128 +1,207 @@
-# Tefaux's Trailhead Retreats
+# 🌲 Tefaux's Trailhead Retreats
 
-A modern cabin management and booking administration platform built for managing luxury wilderness retreats. This application allows staff to oversee reservations, manage cabin inventory, track business performance, and streamline guest operations through a responsive dashboard.
+A modern cabin booking and management platform inspired by hospitality management systems. Tefaux's Trailhead Retreats allows users to browse luxury cabins, make reservations, and provides administrators with powerful tools to manage bookings, guests, and business performance through an intuitive dashboard.
 
-## Overview
+---
 
-Tefaux's Trailhead Retreats is a full-stack web application designed to help hospitality businesses manage cabin rentals efficiently. The platform provides real-time booking management, guest tracking, cabin administration, and business analytics through an intuitive interface.
+## 📖 Overview
 
-This project was built as part of my full-stack development portfolio and demonstrates modern React development practices, state management, API integration, authentication, and database-driven applications.
+Tefaux's Trailhead Retreats was built as a full-stack React application to demonstrate modern frontend architecture, state management, authentication, and real-world CRUD operations. The project emphasizes responsive design, reusable components, and scalable application structure while integrating cloud-based backend services.
 
-## Features
-Authentication & Security
-<br>
-Secure user authentication
-<br>
-Protected application routes
-<br>
-Role-based staff access
-<br>
-Session management
-<br>
+The application includes both a customer-facing booking experience and an administrative portal for managing reservations, cabins, guests, and business analytics.
 
-## Dashboard Analytics
-Booking statistics
-<br>
-Revenue tracking
-<br>
-Occupancy insights
-<br>
-Stay duration metrics
-<br>
-Recent booking activity
-<br>
+---
 
-## Cabin Management
-Create new cabins
-<br>
-Edit existing cabin information
-<br>
-Upload cabin images
-<br>
-Manage pricing and discounts
-<br>
-Delete cabins
-<br>
+## ✨ Features
 
-## Booking Management
-View all reservations
-<br>
-Filter bookings by status
-<br>
-Sort booking data
-<br>
-Search reservation records
-<br>
-Pagination support
-<br>
+### Guest Features
 
-## Guest Management
-Guest information tracking
-<br>
-Booking history access
-<br>
-Contact information management
-<br>
+* Browse available cabins
+* View cabin details and amenities
+* Create and manage reservations
+* Responsive design for desktop and mobile devices
 
-## Check-In / Check-Out Workflow
-Guest arrival processing
-<br>
-Breakfast add-on support
-<br>
-Payment confirmation
-<br>
-Check-out management
-<br>
+### Administration
 
-## Application Settings
-Configure booking limits
-<br>
-Manage guest capacity rules
-<br>
-Set breakfast pricing
-<br>
-Customize business settings
-<br>
+* Secure user authentication
+* Cabin management (Create, Read, Update, Delete)
+* Booking management
+* Guest management
+* Business dashboard with key performance metrics
+* Settings management
 
-## Dark Mode
-Light and dark theme support
-<br>
-Theme persistence using local storage
-<br>
+### User Experience
 
-## Tech Stack
- ### Frontend
-React
-<br>
-React Router
-<br>
-Styled Components
-<br>
-React Hook Form
-<br>
-React Icons
-<br>
-State Management & Data Fetching
-<br>
-TanStack Query (React Query)
-<br>
-Context API
-<br>
+* Protected routes
+* Form validation
+* Loading states
+* Error boundaries
+* Toast notifications
+* Optimistic UI updates
+* Responsive layout
 
- ### Backend & Database
-Supabase
-<br>
-PostgreSQL
-<br>
-Additional Libraries
-<br>
-date-fns
-<br>
-react-hot-toast
-<br>
-react-error-boundary
-<br>
-react-leaflet
-<br>
-Screenshots
-<br>
+---
+
+## 🛠 Tech Stack
+
+### Frontend
+
+* React
+* React Router
+* Styled Components
+* React Hook Form
+* React Query (TanStack Query)
+* React Hot Toast
+* React Icons
+* Date-fns
+
+### Backend & Services
+
+* Supabase
+
+  * Authentication
+  * PostgreSQL Database
+  * Storage
+* REST API integration
+
+### Development Tools
+
+* Vite
+* ESLint
+* Git & GitHub
+
+---
+
+## 📊 Dashboard Features
+
+The admin dashboard provides business insights including:
+
+* Total bookings
+* Revenue tracking
+* Occupancy metrics
+* Recent reservations
+* Guest activity
+* Booking status overview
+
+---
+
+## 🔒 Authentication
+
+Authentication is handled through Supabase Authentication.
+
+Authorized users can:
+
+* Sign in securely
+* Access protected administrative pages
+* Manage business data
+* Update account information
+
+---
+
+## 📁 Project Structure
+
+```
+src/
+│
+├── features/
+│   ├── authentication/
+│   ├── bookings/
+│   ├── cabins/
+│   ├── check-in-out/
+│   ├── dashboard/
+|   └── settings/
+│
+├── hooks/
+├── pages/
+├── services/
+├── styles/
+├── ui/
+└── utils/
+```
+
+---
+
+## 🚀 Getting Started
+
+### Clone the repository
+
+```bash
+git clone https://github.com/yourusername/tefauxs-trailhead-retreats.git
+```
+
+### Install dependencies
+
+```bash
+npm install
+```
+
+### Create a `.env` file
+
+Configure your Supabase credentials:
+
+```env
+VITE_SUPABASE_URL=your_supabase_url
+VITE_SUPABASE_KEY=your_supabase_anon_key
+```
+
+### Run the development server
+
+```bash
+npm run dev
+```
+
+---
+
+## 📸 Screenshots
+
+
+ ![App Dashboard](src/images/Screenshot%202026-08-04%20160000.png)
+---
+ ![App Cabins](src/images/Screenshot%202026-08-04%20160046.png)
+---
+ ![App Settings](src/images/Screenshot%202026-08-04%20160059.png)
+
+
+---
+
+## 🎯 What I Learned
+
+This project strengthened my experience with:
+
+* Building scalable React applications
+* Component-driven architecture
+* State management using React Query
+* Authentication and authorization
+* CRUD operations with Supabase
+* Responsive UI development
+* Custom hooks
+* Error handling
+* Performance optimization
+* Managing asynchronous data
+* Reusable component design
+
+---
+
+## 🔮 Future Improvements
+
+* Customer self-service booking portal
+* Online payment integration
+* Email confirmations
+* Search and filtering
+* Calendar availability view
+* Booking cancellations
+* Role-based permissions
+* Dark mode
+* Unit and integration testing
+
+---
+
+## 👨‍💻 Author
+
+**Michael Kelly**
+
+Full-Stack JavaScript Developer with a passion for building modern web applications that combine thoughtful user experience with scalable architecture.
+
+GitHub: https://github.com/mkelly115
+
+LinkedIn: https://www.linkedin.com/in/michael-andrew-kelly/
