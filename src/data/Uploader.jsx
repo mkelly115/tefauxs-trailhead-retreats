@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useQueryClient } from "@tanstack/react-query";
 import { isFuture, isPast, isToday } from "date-fns";
 import supabase from "../services/supabase";
 import Button from "../ui/Button";
@@ -94,14 +95,52 @@ async function createBookings() {
     };
   });
 
-  console.log(finalBookings);
-
   const { error } = await supabase.from("bookings").insert(finalBookings);
   if (error) console.log(error.message);
 }
 
+// The sample bookings have dates relative to the day they were uploaded. The
+// newest created_at in the sample data tells us which day that is, so if the
+// newest booking in the DB has the same (UTC) date, the data is already fresh.
+function getExpectedLatestCreatedAt() {
+  return bookings
+    .map((booking) => booking.created_at)
+    .sort()
+    .at(-1);
+}
+
+async function areBookingsFresh() {
+  const { data, error } = await supabase
+    .from("bookings")
+    .select("created_at")
+    .order("created_at", { ascending: false })
+    .limit(1);
+
+  if (error) {
+    console.log(error.message);
+    // If we can't tell, don't wipe anything
+    return true;
+  }
+  if (!data.length) return false;
+
+  const latestInDb = String(data[0].created_at).slice(0, 10);
+  const expected = getExpectedLatestCreatedAt().slice(0, 10);
+  return latestInDb === expected;
+}
+
+// Re-seeds the bookings only if they weren't already uploaded today.
+// Returns true if new data was uploaded.
+export async function refreshBookingsIfStale() {
+  if (await areBookingsFresh()) return false;
+
+  await deleteBookings();
+  await createBookings();
+  return true;
+}
+
 function Uploader() {
   const [isLoading, setIsLoading] = useState(false);
+  const queryClient = useQueryClient();
 
   async function uploadAll() {
     setIsLoading(true);
@@ -115,6 +154,8 @@ function Uploader() {
     await createCabins();
     await createBookings();
 
+    // Refetch everything so the UI shows the new data without a reload
+    await queryClient.invalidateQueries();
     setIsLoading(false);
   }
 
@@ -122,6 +163,7 @@ function Uploader() {
     setIsLoading(true);
     await deleteBookings();
     await createBookings();
+    await queryClient.invalidateQueries();
     setIsLoading(false);
   }
 

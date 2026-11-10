@@ -2,6 +2,8 @@ import { Outlet } from "react-router-dom";
 import Header from "./Header";
 import SideBar from "./Sidebar";
 import styled from "styled-components";
+import Spinner from "./Spinner";
+import { useFreshSampleData } from "../data/useFreshSampleData";
 
 const StyledAppLayout = styled.div`
   display: grid;
@@ -24,7 +26,25 @@ const Container = styled.div`
   gap: 3.2rem;
 `;
 
+const FullPage = styled.div`
+  height: 100vh;
+  background-color: var(--color-grey-50);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 function AppLayout() {
+  // On a visitor's first load, make sure the sample bookings are current
+  const { isRefreshing } = useFreshSampleData();
+
+  if (isRefreshing)
+    return (
+      <FullPage>
+        <Spinner />
+      </FullPage>
+    );
+
   return (
     <StyledAppLayout>
       <Header />
